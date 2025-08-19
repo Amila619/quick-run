@@ -8,14 +8,17 @@ IF "%~1"=="" (
     IF EXIST "%CD%\%~1" (
         ECHO Project already exists.
     ) ELSE (
-        REM Create a new Vite project with React template
-        npm create vite@latest %1 -- --template react
+        REM Create the project directory
+        mkdir %1
 
         REM Change to the project directory
         CD %1
 
+        REM Initialize package.json
+        npm init -y
+
         REM Install dependencies
-        npm install
+        npm install express && npm install -D nodemon dotenv
 
         REM Open project in VS Code
         code .
