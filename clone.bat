@@ -1,4 +1,5 @@
 @ECHO OFF
+SETLOCAL ENABLEDELAYEDEXPANSION
 
 IF "%~1"=="" (
     ECHO No repository provided.
@@ -10,7 +11,7 @@ IF "%~1"=="" (
     FOR %%I IN ("%1") DO SET repoName=%%~nI
 
     REM Navigate to repository folder
-    CD "%repoName%"
+    CD "!repoName!"
 
     REM Open repository in VS Code
     code .
