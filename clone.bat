@@ -2,14 +2,16 @@
 
 IF "%~1"=="" (
     ECHO No repository provided.
-) ELSE (    
+) ELSE (
     REM Clone the specified git repository
-    git clone %1
+    git clone "%1"
 
-    REM Navigate to directory
-    CD %1
+    REM Extract folder name from URL
+    FOR %%I IN ("%1") DO SET repoName=%%~nI
+
+    REM Navigate to repository folder
+    CD "%repoName%"
 
     REM Open repository in VS Code
-    code . 
-
+    code .
 )
